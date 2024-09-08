@@ -7,13 +7,18 @@
 
 import SwiftUI
 
-struct CircleView: View {
-    var color: Color
+struct TrafficLightCircleView: View {
     var diameter: CGFloat
+    var color: Color
+    var isOn: Bool
+    
+    private let lightOFF = 0.3
+    private let lightOn = 1.0
     
     var body: some View {
         Circle()
             .foregroundStyle(color)
+            .opacity(isOn ? lightOn : lightOFF)
             .frame(width: diameter, height: diameter)
             .overlay(Circle().stroke(Color.white, lineWidth: 4))
             .shadow(radius: 10)
@@ -21,5 +26,5 @@ struct CircleView: View {
 }
 
 #Preview {
-    CircleView(color: .green, diameter: 250)
+    TrafficLightCircleView(diameter: 250, color: .green, isOn: true)
 }
